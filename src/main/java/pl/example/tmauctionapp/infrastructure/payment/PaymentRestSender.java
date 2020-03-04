@@ -12,6 +12,7 @@ public class PaymentRestSender implements PaymentSenderClient {
 
     @Override
     public Payment sendPayment(Order order) {
+        //TODO complete REST statement
         return Payment.generate(order);
     }
 }
