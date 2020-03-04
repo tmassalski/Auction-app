@@ -1,4 +1,4 @@
-package pl.example.tmauctionapp.infrastructure;
+package pl.example.tmauctionapp.infrastructure.auction;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

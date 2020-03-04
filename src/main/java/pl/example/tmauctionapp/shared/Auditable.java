@@ -1,4 +1,4 @@
-package pl.example.tmauctionapp.domain.auction;
+package pl.example.tmauctionapp.shared;
 
 
 import lombok.AccessLevel;
@@ -18,7 +18,7 @@ import java.util.Date;
 @Setter(AccessLevel.PROTECTED)
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-class Auditable {
+public class Auditable {
 
     @Column(name = "created_date")
     @CreatedDate

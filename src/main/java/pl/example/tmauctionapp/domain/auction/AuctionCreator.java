@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class AuctionCreator {
+class AuctionCreator {
 
     private final CreateAuctionClient createAuctionClient;
 
