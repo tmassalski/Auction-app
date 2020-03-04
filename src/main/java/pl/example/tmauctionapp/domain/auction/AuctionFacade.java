@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuctionFacade {
 
-   private final AuctionCreator auctionCreator;
+    private final AuctionCreator auctionCreator;
 
     public void createAuction(AuctionDto auctionDto) {
         auctionCreator.create(auctionDto);

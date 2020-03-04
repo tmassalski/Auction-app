@@ -1,8 +1,11 @@
 package pl.example.tmauctionapp.domain.auction;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import pl.example.tmauctionapp.shared.Auditable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +20,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter(AccessLevel.PRIVATE)
 public class Auction extends Auditable {
 
     @Id
@@ -33,7 +37,7 @@ public class Auction extends Auditable {
     private LocalDateTime endDate;
     private boolean active;
 
-    public static Auction generateActive(AuctionDto auctionDto) {
+    static Auction generateActive(AuctionDto auctionDto) {
         LocalDateTime currentDateTime = LocalDateTime.now();
         Auction auction = new Auction();
         auction.ownerId = auctionDto.getOwnerId();
@@ -46,5 +50,12 @@ public class Auction extends Auditable {
         auction.endDate = currentDateTime.plusDays(auctionDto.getExpirationDays());
         auction.active = true;
         return auction;
+    }
+
+    void reduceQuantityAndVerifyStatus(int reduceByQuantity) {
+        this.quantity -= reduceByQuantity;
+        if (this.quantity == 0) {
+            this.active = false;
+        }
     }
 }
