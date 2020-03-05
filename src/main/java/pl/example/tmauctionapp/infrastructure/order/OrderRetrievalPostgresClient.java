@@ -15,7 +15,7 @@ public class OrderRetrievalPostgresClient implements OrderRetrievalClient {
     private final OrderRepository orderRepository;
 
     @Override
-    public List<Order> getAllByStatus(OrderStatus status) {
-       return orderRepository.findAllByStatus(status);
+    public List<Order> getPendingOrders() {
+       return orderRepository.findAllByStatus(OrderStatus.PENDING);
     }
 }

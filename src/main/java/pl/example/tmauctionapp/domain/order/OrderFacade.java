@@ -19,8 +19,8 @@ public class OrderFacade {
         orderCreator.createOrderAndUpdateAuction(orderDto);
     }
 
-    public List<Payment> getAllPaymentsByOrderStatus(OrderStatus status) {
-        return orderRetrievalClient.getAllByStatus(status).stream()
+    public List<Payment> getAllPaymentsByOrderStatus() {
+        return orderRetrievalClient.getPendingOrders().stream()
                 .map(Payment::generate)
                 .collect(Collectors.toList());
     }
