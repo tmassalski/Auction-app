@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class Payment {
 
     private long ownerId;
