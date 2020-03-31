@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>pl.example</groupId>
-    <artifactId>tm-auction-app</artifactId>
+    <artifactId>fc-auction-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>tm-auction-app</name>
-    <description>Auction app</description>
+    <name>fc-auction-app</name>
+    <description>Auction App to communicate with Bank App</description>
 
     <properties>
         <java.version>1.8</java.version>
