@@ -9,10 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 class AuctionCreator {
 
     private final CreateAuctionClient createAuctionClient;
+    private final AuctionScheduler auctionScheduler;
 
     @Transactional
-    public void create(AuctionDto auctionDto) {
-        Auction auction = Auction.generateActive(auctionDto);
+    public void create(AuctionCommand auctionCommand) {
+        Auction auction = Auction.generateActive(auctionCommand);
         createAuctionClient.create(auction);
+        auctionScheduler.scheduleDeactivation(auction);
     }
 }

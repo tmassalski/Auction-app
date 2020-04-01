@@ -3,16 +3,15 @@ package pl.example.tmauctionapp.infrastructure.auction;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.example.tmauctionapp.domain.auction.Auction;
-import pl.example.tmauctionapp.domain.auction.CreateAuctionClient;
+import pl.example.tmauctionapp.domain.auction.UpdateAuctionClient;
 
 @Service
 @RequiredArgsConstructor
-    class CreateAuctionPostgresClient implements CreateAuctionClient {
+class UpdateAuctionPostgresClient implements UpdateAuctionClient {
 
     private final AuctionRepository auctionRepository;
 
-    @Override
-    public void create(Auction auction) {
+    public void update(Auction auction) {
         auctionRepository.save(auction);
     }
 }

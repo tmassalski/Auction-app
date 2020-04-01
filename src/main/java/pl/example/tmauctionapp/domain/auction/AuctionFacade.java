@@ -9,7 +9,7 @@ public class AuctionFacade {
 
     private final AuctionCreator auctionCreator;
 
-    public void createAuction(AuctionDto auctionDto) {
-        auctionCreator.create(auctionDto);
+    public void createAuction(AuctionCommand auctionCommand) {
+        auctionCreator.create(auctionCommand);
     }
 }

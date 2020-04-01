@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class OrderRetrievalPostgresClient implements OrderRetrievalClient {
+class OrderRetrievalPostgresClient implements OrderRetrievalClient {
 
     private final OrderRepository orderRepository;
 
@@ -18,4 +18,7 @@ public class OrderRetrievalPostgresClient implements OrderRetrievalClient {
     public List<Order> getPendingOrders() {
        return orderRepository.findAllByStatus(OrderStatus.PENDING);
     }
+
+
+
 }
