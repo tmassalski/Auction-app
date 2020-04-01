@@ -43,16 +43,19 @@ public class Order extends Auditable {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    static Order generatePending(OrderDto orderDto, Auction auction) {
-        Order order = Order.builder().auctionId(orderDto.getAuctionId())
+    static Order generatePending(OrderCommand orderCommand, Auction auction) {
+        return Order.builder().auctionId(orderCommand.getAuctionId())
                 .ownerId(auction.getOwnerId())
                 .ownerAccountId(auction.getOwnerAccountId())
                 .unitPrice(auction.getPrice())
-                .clientId(orderDto.getClientId())
-                .clientAccountNumber(orderDto.getClientAccountNumber())
-                .quantity(orderDto.getQuantity())
+                .clientId(orderCommand.getClientId())
+                .clientAccountNumber(orderCommand.getClientAccountNumber())
+                .quantity(orderCommand.getQuantity())
                 .status(OrderStatus.PENDING)
                 .build();
-        return order;
+    }
+
+    public void setPaidStatus() {
+        this.status = OrderStatus.PAID;
     }
 }

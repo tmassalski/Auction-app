@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 @Builder
 @Getter
-public class AuctionDto {
+public class AuctionCommand {
 
     @NonNull
     private final long ownerId;

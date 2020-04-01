@@ -4,22 +4,19 @@ import lombok.Value;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 
 @Value
-public class CreateAuctionRequest {
+class CreateAuctionRequest {
 
     @Min(1)
     private final long ownerId;
     @Min(1)
     private final long ownerAccountId;
-    @NotNull
-    @NotEmpty
+    @NotBlank
     private final String title;
-    @NotNull
-    @NotEmpty
+    @NotBlank
     private final String description;
     @Min(1)
     private final int quantity;

@@ -13,12 +13,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/orders")
 @RequiredArgsConstructor
-public class OrderController {
+class OrderController {
 
     private final OrderFacade orderFacade;
 
     @GetMapping(path = "/pending")
-    public ResponseEntity<List<Payment>> getPendingOrders() {
+    ResponseEntity<List<Payment>> getPendingOrders() {
         return ResponseEntity.ok(orderFacade.getAllPaymentsByOrderStatus());
     }
 }

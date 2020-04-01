@@ -6,7 +6,7 @@ import lombok.NonNull;
 
 @Builder
 @Getter
-public class OrderDto {
+public class OrderCommand {
 
     @NonNull
     private long auctionId;

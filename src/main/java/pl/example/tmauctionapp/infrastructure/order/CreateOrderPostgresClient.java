@@ -7,7 +7,7 @@ import pl.example.tmauctionapp.domain.order.Order;
 
 @Service
 @RequiredArgsConstructor
-public class CreateOrderPostgresClient implements CreateOrderClient {
+class CreateOrderPostgresClient implements CreateOrderClient {
 
     private final OrderRepository orderRepository;
 

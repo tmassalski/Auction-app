@@ -37,17 +37,17 @@ public class Auction extends Auditable {
     private LocalDateTime endDate;
     private boolean active;
 
-    static Auction generateActive(AuctionDto auctionDto) {
+    static Auction generateActive(AuctionCommand auctionCommand) {
         LocalDateTime currentDateTime = LocalDateTime.now();
         Auction auction = new Auction();
-        auction.ownerId = auctionDto.getOwnerId();
-        auction.ownerAccountId = auctionDto.getOwnerAccountId();
-        auction.title = auctionDto.getTitle();
-        auction.description = auctionDto.getDescription();
-        auction.quantity = auctionDto.getQuantity();
-        auction.price = auctionDto.getPrice();
+        auction.ownerId = auctionCommand.getOwnerId();
+        auction.ownerAccountId = auctionCommand.getOwnerAccountId();
+        auction.title = auctionCommand.getTitle();
+        auction.description = auctionCommand.getDescription();
+        auction.quantity = auctionCommand.getQuantity();
+        auction.price = auctionCommand.getPrice();
         auction.startDate = currentDateTime;
-        auction.endDate = currentDateTime.plusDays(auctionDto.getExpirationDays());
+        auction.endDate = currentDateTime.plusDays(auctionCommand.getExpirationDays());
         auction.active = true;
         return auction;
     }
@@ -55,7 +55,11 @@ public class Auction extends Auditable {
     void reduceQuantityAndVerifyStatus(int reduceByQuantity) {
         this.quantity -= reduceByQuantity;
         if (this.quantity == 0) {
-            this.active = false;
+            deactivate();
         }
+    }
+
+    void deactivate() {
+        this.active = false;
     }
 }
