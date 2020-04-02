@@ -2,8 +2,10 @@ package pl.example.tmauctionapp.domain.auction;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -11,17 +13,20 @@ import java.util.TimerTask;
 @RequiredArgsConstructor
 public class AuctionScheduler {
 
+    private final AuctionRetrievalClient auctionRetrievalClient;
     private final UpdateAuctionClient updateAuctionClient;
 
-    void scheduleDeactivation(Auction auction) {
+    void scheduleDeactivation(Long auctionId, LocalDateTime auctionEndDate) {
         Timer auctionTimer = new Timer();
-        TimerTask auctionTimerTask = new TimerTask() {
+        TimerTask deactivateAuction = new TimerTask() {
             @Override
+            @Transactional
             public void run() {
+                Auction auction = auctionRetrievalClient.getActiveByIdOrThrow(auctionId);
                 auction.deactivate();
                 updateAuctionClient.update(auction);
             }
         };
-        auctionTimer.schedule(auctionTimerTask, Timestamp.valueOf(auction.getEndDate()));
+        auctionTimer.schedule(deactivateAuction, Timestamp.valueOf(auctionEndDate));
     }
 }
