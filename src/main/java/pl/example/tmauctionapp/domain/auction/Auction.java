@@ -25,7 +25,7 @@ public class Auction extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "auction_sequence")
-    @SequenceGenerator(name = "auction_sequence")
+    @SequenceGenerator(name = "auction_sequence", initialValue = 3)
     private long id;
     private long ownerId;
     private long ownerAccountId;
