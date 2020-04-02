@@ -24,7 +24,7 @@ class PaymentRestSender implements PaymentSenderClient {
     private final String pendingTransfersBankAppUrl;
     private final OrderRepository orderRepository;
 
-    @Autowired //TODO sprawdź
+    @Autowired
     public PaymentRestSender(RestTemplate restTemplate,
                              @Value("${send.payment.bankapp.url}") String transferBankAppUrl,
                              @Value("${send.all.pending.payments.bankapp.url}")String pendingTransfersBankAppUrl,

@@ -31,7 +31,7 @@ public class Order extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "order_sequence")
-    @SequenceGenerator(name = "order_sequence")
+    @SequenceGenerator(name = "order_sequence", initialValue = 3)
     private long id;
     private long auctionId;
     private long ownerId;
