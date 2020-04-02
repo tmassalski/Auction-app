@@ -15,6 +15,6 @@ class AuctionCreator {
     public void create(AuctionCommand auctionCommand) {
         Auction auction = Auction.generateActive(auctionCommand);
         createAuctionClient.create(auction);
-        auctionScheduler.scheduleDeactivation(auction);
+        auctionScheduler.scheduleDeactivation(auction.getId(), auction.getEndDate());
     }
 }
