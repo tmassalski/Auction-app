@@ -6,6 +6,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.client.RestTemplate;
 import pl.example.tmauctionapp.domain.order.Order;
@@ -48,6 +49,7 @@ class PaymentRestSender implements PaymentSenderClient {
     }
 
     @Override
+    @Transactional
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void sendPendingPayments(List<Order> pendingOrders) {
         List<Payment> pendingPayments = mapPendingOrdersToPayments(pendingOrders);
