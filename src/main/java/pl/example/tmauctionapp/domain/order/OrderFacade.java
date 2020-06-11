@@ -1,6 +1,5 @@
 package pl.example.tmauctionapp.domain.order;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -22,11 +21,11 @@ public class OrderFacade {
         orderCreator.createOrderAndUpdateAuction(orderCommand);
     }
 
-    @Scheduled(fixedDelay = 10000)
-    public void processPendingPayments() {
+    @Scheduled(cron = "0 */15 * ? * *")
+    public void processPendingOrders() {
         List<Order> pendingOrders = orderRetrievalClient.getPendingOrders();
         if (!pendingOrders.isEmpty()) {
-            paymentSenderClient.sendPendingPayments(pendingOrders);
+            pendingOrders.forEach(paymentSenderClient::sendPayment);
         }
     }
 

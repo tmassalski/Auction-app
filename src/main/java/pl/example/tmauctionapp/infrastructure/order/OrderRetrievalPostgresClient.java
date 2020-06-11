@@ -18,7 +18,4 @@ class OrderRetrievalPostgresClient implements OrderRetrievalClient {
     public List<Order> getPendingOrders() {
        return orderRepository.findAllByStatus(OrderStatus.PENDING);
     }
-
-
-
 }
