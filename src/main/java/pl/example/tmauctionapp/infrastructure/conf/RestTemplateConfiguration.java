@@ -15,5 +15,4 @@ public class RestTemplateConfiguration {
         restTemplate.getInterceptors().add(new RequestResponseLogger());
         return restTemplate;
     }
-
 }
